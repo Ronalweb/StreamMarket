@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamMarket</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway:wght@400;700&display=swap" rel="stylesheet"/>
+ </head>
+
+<body>
+   <!-- NAV -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="logoprincipal.svg" alt="StreamMarket" />
+    </div>
+    
+    <nav>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li>
+
+    <!-- Item con desplegable -->
+   <li class="dropdown"><a href="#" class="drop-toggle" onclick="filterCategory('streaming')">Streaming</a></li>
+   <li class="dropdown"><a href="#" class="drop-toggle" onclick="filterCategory('licencias')">Licencias</a></li>
+  </ul>
+</nav>
+
+<div class="burger" id="burger">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+  </div>
+
+    <!-- Dentro del header -->
+<div class="search-icon">
+  <img src="iconos\lupa.svg" alt="Buscar" id="searchToggle"/>
+</div>
+
+<div class="search-bar" id="searchBar">
+  <input type="text" id="searchInput" placeholder="Buscar producto...">
+</div>
+  </header>
+
+  <div class="overlay"></div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <img src="banner de pagina principal.png" alt="imagen pulicitaria">
+</div>
+
+  <!-- FRASE -->
+  <section class="frase" id="frase">
+    <blockquote>“Streaming premium, perfiles seguros y acceso inmediato.”</blockquote>
+  </section>
+
+    <!-- DESTACADO -->
+<section class="destacado">
+  <h2 id="destacado-title">Destacados</h2>
+
+  <!-- Mensajes dinámicos -->
+  <h2 id="result-title" style="display:none;">Productos encontrados</h2>
+  <h2 id="no-results" style="display:none;">No se encontraron resultados</h2>
+  
+  <div class="productos">
+      <div class="producto" data-category="streaming">
+       <img src="netflix2.png" alt="patalla netflix" data-id="1" class="product"></a>
+        <p class="nombre-producto">Netflix Premium 4K – Pantalla Individual / Perfil Privado<br /></p>
+        <p class="precio">
+    <span class="precio-original">$12</span>
+    <span class="precio-descuento">$7</span>
+  </p>
+  <button data-id="1" class="product">Comprar</button>
+       </div>
+      <div class="producto" data-category="streaming">
+        <img src="disney+.png" alt="disney" class="product" data-id="2">
+        <p class="nombre-producto">Disney+ Premium – Perfil Individual<br /></p><strong>21.900$</strong>
+        <button data-id="2" class="product">Comprar</button>
+      </div>
+      
+      <div class="producto" data-category="streaming">
+        <img src="hbomax2.png" alt="hbo" data-id="3" class="product"/>
+        <p class="nombre-producto">Max (HBO Max) – Perfil Individual HD/4K<br /></p><strong>10$</strong>
+        <button data-id="3" class="product">Comprar</button>
+      </div>
+      
+      <div class="producto" data-category="streaming">
+        <img src="amazon2.png" alt="amazon" class="product" data-id="4">
+        <p class="nombre-producto">Prime Video – Pantalla Individual / Perfil Premium<br/></p><strong>20.999$</strong>
+        <button data-id="4" class="product">Comprar</button>
+      </div>
+      
+      <div class="producto" data-category="streaming">
+        <img src="spotify2.png" alt="spotify" class="product" data-id="5"/>
+        <p class="nombre-producto">Spotify Premium Familiar – Usuario Individual<br/></p><strong>40.999$</strong>
+        <button data-id="5" class="product">Comprar</button>
+      </div>
+      <div class="producto" data-category="streaming">
+        <img src="youtube2.png" alt="youtube premiun" class="product" data-id="6">
+        <p class="nombre-producto">YouTube Premium – Cuenta Invitada<br /></p><strong>30.999$</strong>
+        <button data-id="6" class="product">Comprar</button>
+      </div>
+      <div class="producto" data-category="streaming">
+        <img src="netfly+disney.png" alt="Combo Netflix 4K + Disney+ HD" class="product" data-id="7">
+        <p class="nombre-producto">Combo Netflix 4K + Disney+ HD<br /></p><strong>30.999$</strong>
+        <button data-id="7" class="product">Comprar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-left">
+        <img id="modal-img" src="">
+      </div>
+     <div class="modal-right">
+  <h2 id="modal-name"></h2>
+  <p class="modal-price" id="modal-price"></p>
+  
+  <!-- Ficha técnica -->
+  <div class="ficha-tecnica">
+    <h3>Ficha Técnica</h3>
+    <ul>
+      <li id="row-calidad"><strong>calidad:</strong> <span id="modal-calidad"></span></li>
+      <li id="row-audio" style="display:none;"><strong>Calidad de audio:</strong> <span id="modal-calidad-audio"></span></li>
+      <li id="row-pantallas"><strong>Pantallas simultaneas del plan:</strong> <span id="modal-Pantallas"></span></li>
+      <li id="row-acceso"><strong>Tipo de acceso:</strong> <span id="modal-acceso"></span></li>
+      <li id="row-privacidad"><strong>privacidad:</strong> <span id="modal-privacidad"></span></li>
+      <li id="row-regiones"><strong>Regiones disponibles:</strong> <span id="modal-regiones"></span></li>
+      <li id="row-garantia"><strong>Garantía:</strong> <span id="modal-garantia"></span></li>
+      <li id="row-entrega"><strong>Entrega:</strong> <span id="modal-entrega"></span></li>
+      <li id="row-caracteristicas" style="display:none;"><strong>Características:</strong><div id="modal-caracteristicas"></div></li>
+      <li><h3>Requisitos</h3><span id="modal-requisitos"></span></li>
+      <li id="row-conexion"><strong>🔹</strong> <span id="modal-conexion"></span></li>
+      <li id="row-dispositivos"><strong>🔹</strong> <span id="modal-dispositivos"></span></li>
+      <li id="row-ajustes"><strong>🔹</strong> <span id="modal-ajustes"></span></li>
+    </ul>
+  </div>
+
+  <p class="modal-description" id="modal-description"></p>
+  <a id="modal-whatsapp" target="_blank" class="btn-whatsapp">Comprar por WhatsApp</a>
+</div>
+    </div>
+  </div>
+    <!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="logoprincipal.svg" alt="Tu Joya Ideal Logo">
+    </div>
+
+    <div class="footer-section">
+      <h3>Suscríbete</h3>
+      <p>Recibe novedades y promociones</p>
+      <form>
+        <input type="email" placeholder="Email">
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <div class="footer-section">
+     <h3>Nosotros</h3>
+       <a href="/politicas de envío.html"><p>Políticas de envío</p></a>
+      <a href="/contacto.html">Contacto</p></a>
+    </div>
+
+    <div class="footer-section">
+      <h3>Síguenos</h3>
+      <p class="redes-sociales"><img src="iconos\facebook.png" alt="Facebook"></p>
+      <p class="redes-sociales"><img src="iconos\instagram.png" alt="Instagram"></p>
+      <p class="redes-sociales"><img src="iconos/telegrama.png" alt="Telegram"></p>
+    </div>
+  </div>
+</footer>
+ <script>
+  const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav-links');
+const overlay = document.querySelector('.overlay');
+
+let scrollPosition = 0;
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('nav-active');
+  burger.classList.toggle('toggle');
+  overlay.classList.toggle('active');
+
+  if (!document.body.classList.contains("menu-open")) {
+    scrollPosition = window.scrollY;
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.classList.add("menu-open");
+  } else {
+    document.body.classList.remove("menu-open");
+    document.body.style.top = "";
+    window.scrollTo(0, scrollPosition);
+  }
+});
+
+overlay.addEventListener('click', () => {
+  nav.classList.remove('nav-active');
+  burger.classList.remove('toggle');
+  overlay.classList.remove('active');
+  document.body.classList.remove("menu-open");
+  document.body.style.top = "";
+  window.scrollTo(0, scrollPosition);
+});
+
+
+</script>
+
+      <!-- Script -->
+  <script>
+   const products = {
+    1: {
+      name: "Netflix Premium 4K – Pantalla Individual / Original sin caidas",
+      price:{cop:13000,usd:5,eur:4.5},
+     
+      description: "Acceso a Netflix Premium con calidad 4K Ultra HD + HDR, perfil exclusivo protegido con PIN. Ideal para uso personal o familiar. No incluye cambios de correo ni contraseña, solo acceso al perfil asignado.",
+      img: "netflix2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "4K Ultra HD / HDR10 / Dolby Vision",
+      Pantallas: "1",
+      acceso: "Perfil individual",
+      privacidad: "Perfil bloqueado con PIN",
+      regiones: "Mundial",
+      garantia: "27 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      ajustes: "No se permite cambiar idioma del perfil o ajustes avanzados",
+      category: "streaming",
+      featured: false,
+    },
+      2: {
+      name: "Netflix Premium 4K – perfil individual/ Original sin caidas",
+      price:{cop:15000,usd:6,eur:5},
+     
+      description: "Acceso a Netflix Premium con calidad 4K Ultra HD + HDR, perfil exclusivo protegido con PIN. Ideal para uso personal o familiar. No incluye cambios de correo ni contraseña, solo acceso al perfil asignado.",
+      img: "netflix2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "4K Ultra HD / HDR10 / Dolby Vision",
+      Pantallas: "4",
+      acceso: "Perfil individual",
+      privacidad: "Perfil bloqueado con PIN",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      ajustes: "No se permite cambiar idioma del perfil o ajustes avanzados",
+      category: "streaming",
+      featured: false,
+    },
+     3: {
+      name: "Netflix Premium 4K – cuenta completa/ Original sin caidas",
+      price:{cop:50000,usd:16,eur:14},
+     
+      description: "Acceso a Netflix Premium con calidad 4K Ultra HD + HDR, perfil exclusivo protegido con PIN. Ideal para uso personal o familiar. No incluye cambios de correo ni contraseña, solo acceso al perfil asignado.",
+      img: "netflix2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "4K Ultra HD / HDR10 / Dolby Vision",
+      Pantallas: "4",
+      acceso: "Perfil individual",
+      privacidad: "acceso al correo",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      ajustes: "No se permite cambiar idioma del perfil o ajustes avanzados",
+      category: "streaming",
+      featured: false,
+    },
+    4: {
+      name: "Disney+ Premium +ESPN – Perfil Individual (original)",
+      price:{cop:12000,usd:5,eur:4},
+      
+      description: "Acceso a Disney+ con contenido HD/4K, catálogo completo de Marvel, Star Wars, Pixar y Disney Originals, tiene accseso a los canales de ESPN y STAR+. Perfil exclusivo y seguro.",
+      img: "disney-premiun.webp",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "4K Ultra HD / HDR10 / Dolby Vision",
+      Pantallas: "1",
+      acceso: "Perfil individual",
+      privacidad: "Perfil bloqueado con PIN",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+      
+    },
+    5: {
+      name: "Disney+ Premium +ESPN – cuenta completa (original)",
+      price:{cop:32000,usd:12,eur:10},
+      
+      description: "Acceso a Disney+ con contenido HD/4K, catálogo completo de Marvel, Star Wars, Pixar y Disney Originals, con ESPN Y STAR+. Perfil exclusivo y seguro.",
+      img: "disney-premiun.webp",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "4K Ultra HD / HDR10 / Dolby Vision",
+      Pantallas: "4",
+      acceso: "Completo",
+      privacidad: "acceso al correo",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+      
+    },
+    6: {
+      name: "Disney+ Premium sin ESPN – cuenta completa (original)",
+      price:{cop:22000,usd:11,eur:9},
+      
+      description: "Acceso a Disney+ con contenido HD/4K, catálogo completo de Marvel, Star Wars, Pixar y Disney Originals, con ESPN Y STAR+. Perfil exclusivo y seguro.",
+      img: "disney-premiun.webp",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "4K Ultra HD / HDR10 / Dolby Vision",
+      Pantallas: "4",
+      acceso: "Completo",
+      privacidad: "acceso al correo",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+      
+    },
+    7: {
+      name: "Disney+ Estandar– Perfil Individual (original)",
+      price:{cop:9000,usd:4,eur:3},
+      
+      description: "Acceso a Disney+ con contenido HD/4K, catálogo completo de Marvel, Star Wars, Pixar y Disney Originals. Perfil exclusivo y seguro.",
+      img: "disney+.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: " Ultra HD / Audio 5.1",
+      Pantallas: "1",
+      acceso: "Perfil individual",
+      privacidad: "Perfil bloqueado con PIN",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+      
+    },
+    8: {
+      name: "Disney+ estandar – cuenta completa (original)",
+      price:{cop:16000,usd:8,eur:7},
+      
+      description: "Acceso a Disney+ con contenido HD/4K, catálogo completo de Marvel, Star Wars, Pixar y Disney Originals, tiene accseso a los canales de ESPN y STAR+. Perfil exclusivo y seguro.",
+      img: "disney+.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "Ultra HD / Audio 5.1",
+      Pantallas: "1",
+      acceso: "Perfil individual",
+      privacidad: "acceso al correo",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+      
+    },
+    9: {
+     name: "Max (HBO Max) – Perfil Individual HD/4K",
+      price:{cop:9000,usd:3.5,eur:3.5},
+      
+      description: "Perfil privado con acceso al catálogo completo: HBO Originals, DC, Warner, películas estreno y deportes (según país).",
+      img: "hbomax2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "HD / 4K",
+      Pantallas: "1",
+      acceso: "Perfil individual",
+      privacidad: "Perfil bloqueado con PIN",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+        
+    },
+     10: {
+      name: "Max (HBO Max) – cuenta completa HD/4K",
+      price:{cop:16000,usd:8,eur:8},
+      
+      description: "Perfil privado con acceso al catálogo completo: HBO Originals, DC, Warner, películas estreno y deportes (según país).",
+      img: "hbomax2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "HD / 4K",
+      Pantallas: "4",
+      acceso: "Perfil individual",
+      privacidad: "acceso al correo",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+        
+    },
+    11: {
+     name: "Prime Video – Pantalla Individual / Perfil Premium",
+      price:{cop:12000,usd:8,eur:8},
+      discount:{cop:9000,usd:3,eur:3},
+      description: "Acceso a Amazon Prime Video con catálogo HD/4K. Incluye series exclusivas como The Boys, Fallout, Reacher y películas nuevas.",
+      img: "amazon2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "HD / 4K",
+      Pantallas: "1",
+      acceso: "Perfil individual",
+      privacidad: "Perfil bloqueado con PIN",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+    },
+    12: {
+     name: "Prime Video – cuenta completa/ Perfil Premium",
+      price:{cop:2499,usd:8.99,eur:8.99},
+      discount:{cop:16000,usd:6,eur:6},
+      description: "Acceso a Amazon Prime Video con catálogo HD/4K. Incluye series exclusivas como The Boys, Fallout, Reacher y películas nuevas.",
+      img: "amazon2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "HD / 4K",
+      Pantallas: "3",
+      acceso: "Perfil individual",
+      privacidad: "acceso al correo",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+    },
+    13: {
+      name: "Spotify Premium Familiar – Usuario Individual",
+      price:{cop:12000,usd:3,eur:2.8},
+      discount:{cop:7000,usd:2,eur:1.8},
+      description: "Acceso a Spotify Premium sin anuncios, descarga de canciones offline y mejor calidad de audio. Se usa mediante invitación al plan familiar.",
+      img: "spotify2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidadAudio: " Alta / 320 kbps",
+      Descargasoffline: "si",
+      acceso: "Invitación a grupo familiar",
+      regiones: "mundial",
+      garantia: "30 dias",
+      requisitos: "",
+      conexion: "Correo Gmail o nuevo correo para recibir invitación.",
+      category: "streaming",
+      featured: true,
+    },
+    14: {
+      name: "YouTube Premium – Cuenta Invitada",
+      price:{cop:12000,usd:3,eur:2.8},
+      discount:{cop:7000,usd:2,eur:1.8},
+      description:"Acceso a YouTube sin anuncios, reproducción en segundo plano y YouTube Music Premium. Se entrega invitación a grupo familiar.",
+      img: "youtube2.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20collar",
+      caracteristicas:`
+      ✔️Sin anuncios
+      ✔️Música Premium incluida
+      ✔️Reproducción en segundo plano
+      ✔️Descarga offline `,
+      
+      conexion: "Correo Gmail o nuevo correo para recibir invitación.",
+      category: "streaming",
+      featured: true,
+
+    },
+    15: {
+      name: "Combo Netflix 4K + Disney+ HD",
+      price:{cop:12000,usd:3,eur:2.8},
+      discount:{cop:7000,usd:2,eur:1.8},
+      description: "Doble servicio para tener Netflix Premium 4K y Disney+ en un combo económico. Acceso inmediato y perfiles privados.",
+      img: "netfly+disney.png",
+      whatsapp: "https://wa.me/57XXXXXXXXXX?text=Estoy%20interesado%20en%20el%20anillo%20de%20corazón",
+      calidad: "4K Ultra HD / HDR10 / Dolby Vision",
+      Pantallas: "4",
+      acceso: "Perfil individual",
+      privacidad: "Perfil bloqueado con PIN",
+      regiones: "Mundial",
+      garantia: "30 dias",
+      entrega: "Inmediata (1–5 minutos)",
+      requisitos: "",
+      conexion: "Conexión a internet",
+      dispositivos: "Smart TV, PC, Android, iOS o Tablet",
+      category: "streaming",
+      featured: true,
+    }
+  };
+    
+
+  const modal = document.getElementById("product-modal");
+  const closeModal = document.querySelector(".close");
+
+  document.querySelectorAll(".product").forEach(item => {
+    item.addEventListener("click", () => {
+      const id = item.getAttribute("data-id");
+      const p = products[id];
+      if (p) {
+        document.getElementById("modal-img").src = p.img;
+        document.getElementById("modal-name").textContent = p.name;
+
+        // ✅ Mostrar precio con descuento
+        if (p.discount) {
+          document.getElementById("modal-price").innerHTML = `
+            <span class="precio-original">$${p.price.toLocaleString()}</span>
+            <span class="precio-descuento">$${p.discount.toLocaleString()}</span>
+          `;
+        } else {
+          document.getElementById("modal-price").innerHTML = `
+            <span class="precio-normal">$${p.price.toLocaleString()}</span>
+          `;
+        }
+
+ // Ocultar ambos por defecto
+document.getElementById("row-calidad").style.display = "none";
+document.getElementById("row-audio").style.display = "none";
+
+// Mostrar calidad de video si existe
+if (p.calidad) {
+  document.getElementById("modal-calidad").textContent = p.calidad;
+  document.getElementById("row-calidad").style.display = "list-item";
+}
+
+// Mostrar calidad de audio si existe
+if (p.calidadAudio) {
+  document.getElementById("modal-calidad-audio").textContent = p.calidadAudio;
+  document.getElementById("row-audio").style.display = "list-item";
+}
+// Ocultar filas que no aplican
+["row-pantallas","row-privacidad","row-entrega","row-acceso","row-regiones","row-garantia","row-conexion","row-dispositivos","row-ajustes"].forEach(id=>{
+  const el = document.getElementById(id);
+  if (el) el.style.display = "none";
+});
+
+// Mostrar pantallas
+if (p.Pantallas) {
+  document.getElementById("modal-Pantallas").textContent = p.Pantallas;
+  document.getElementById("row-pantallas").style.display = "list-item";
+}
+
+// Mostrar privacidad
+if (p.privacidad) {
+  document.getElementById("modal-privacidad").textContent = p.privacidad;
+  document.getElementById("row-privacidad").style.display = "list-item";
+}
+
+// Mostrar entrega
+if (p.entrega) {
+  document.getElementById("modal-entrega").textContent = p.entrega;
+  document.getElementById("row-entrega").style.display = "list-item";
+}
+
+// Mostrar acceso
+if (p.acceso) {
+  document.getElementById("modal-acceso").textContent = p.acceso;
+  document.getElementById("row-acceso").style.display = "list-item";
+}
+
+// Mostrar regiones
+if (p.regiones) {
+  document.getElementById("modal-regiones").textContent = p.regiones;
+  document.getElementById("row-regiones").style.display = "list-item";
+}
+
+// Mostrar garantía
+if (p.garantia) {
+  document.getElementById("modal-garantia").textContent = p.garantia;
+  document.getElementById("row-garantia").style.display = "list-item";
+}
+
+// Mostrar conexión
+if (p.conexion) {
+  document.getElementById("modal-conexion").textContent = p.conexion;
+  document.getElementById("row-conexion").style.display = "list-item";
+}
+
+// Mostrar dispositivos
+if (p.dispositivos) {
+  document.getElementById("modal-dispositivos").textContent = p.dispositivos;
+  document.getElementById("row-dispositivos").style.display = "list-item";
+}
+//mostrar ajustes
+if (p.ajustes) {
+  document.getElementById("modal-ajustes").textContent = p.ajustes;
+  document.getElementById("row-ajustes").style.display = "list-item";
+}
+
+// Ocultar por defecto
+document.getElementById("row-caracteristicas").style.display = "none";
+
+// Mostrar características
+if (p.caracteristicas) {
+  document.getElementById("modal-caracteristicas").innerHTML =
+    p.caracteristicas
+      .trim()
+      .replace(/^- /gm, "✔️ ")
+      .replace(/\n/g, "<br>");
+
+  document.getElementById("row-caracteristicas").style.display = "list-item";
+}
+
+
+        document.getElementById("modal-requisitos").textContent = p.requisitos;
+        document.getElementById("modal-description").textContent = p.description;
+        document.getElementById("modal-whatsapp").href = p.whatsapp;
+        
+        modal.style.display = "flex";
+      }
+    });
+  });
+
+  closeModal.onclick = () => { modal.style.display = "none"; };
+  window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
+</script>
+<script>
+  const searchToggle = document.getElementById("searchToggle");
+  const searchBar = document.getElementById("searchBar");
+  const searchInput = document.getElementById("searchInput");
+
+  const hero = document.getElementById("hero");
+  const frase = document.getElementById("frase");
+  const destacadoTitle = document.getElementById("destacado-title");
+
+  const resultTitle = document.getElementById("result-title");
+  const noResults = document.getElementById("no-results");
+
+  searchToggle.addEventListener("click", () => {
+    searchBar.style.display = searchBar.style.display === "block" ? "none" : "block";
+    searchInput.focus();
+  });
+
+  searchInput.addEventListener("keyup", () => {
+    const term = searchInput.value.toLowerCase().trim();
+    let found = false;
+
+    document.querySelectorAll(".producto").forEach(card => {
+      const name = card.textContent.toLowerCase();
+      if (term !== "" && name.includes(term)) {
+        card.style.display = "block";
+        found = true;
+      } else if (term === "") {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    if (term === "") {
+      hero.style.display = "block";
+      frase.style.display = "block";
+      destacadoTitle.style.display = "block";
+      resultTitle.style.display = "none";
+      noResults.style.display = "none";
+    } else if (found) {
+      hero.style.display = "none";
+      frase.style.display = "none";
+      destacadoTitle.style.display = "none";
+      resultTitle.style.display = "block";
+      noResults.style.display = "none";
+    } else {
+      hero.style.display = "none";
+      frase.style.display = "none";
+      destacadoTitle.style.display = "none";
+      resultTitle.style.display = "none";
+      noResults.style.display = "block";
+    }
+  });
+  
+function filterCategory(category) {
+  const cards = document.querySelectorAll(".producto");
+  const destacadoTitle = document.getElementById("destacado-title");
+  const hero = document.getElementById("hero");
+  const frase = document.getElementById("frase");
+
+  hero.style.display = "none";
+  frase.style.display = "none";
+  destacadoTitle.style.display = "none";
+
+  cards.forEach(card => {
+    if (card.dataset.category === category) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+function showDestacados() {
+  const cards = document.querySelectorAll(".producto");
+  const destacadoTitle = document.getElementById("destacado-title");
+  const hero = document.getElementById("hero");
+  const frase = document.getElementById("frase");
+
+  hero.style.display = "block";
+  frase.style.display = "block";
+  destacadoTitle.style.display = "block";
+
+  cards.forEach(card => {
+    const id = card.querySelector(".product")?.dataset.id;
+    if (id && products[id].featured) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  showDestacados();
+});
+
+</script>
+</body>
+</html>

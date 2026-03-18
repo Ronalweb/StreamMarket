@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamMarket</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway:wght@400;700&display=swap" rel="stylesheet"/>
+ </head>
+
+<body>
+   <!-- NAV -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="logoprincipal.svg" alt="StreamMarket" />
+    </div>
+    
+    <nav>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li>
+
+    <!-- Item con desplegable -->
+   <li class="dropdown"><a href="#" class="drop-toggle" onclick="filterCategory('streaming')">Streaming</a></li>
+   <li class="dropdown"><a href="#" class="drop-toggle" onclick="filterCategory('licencias')">Licencias</a></li>
+   <li class="dropdown"><a href="#" class="drop-toggle" onclick="filterCategory('licencias')">combos</a></li>
+  </ul>
+</nav>
+
+<div class="burger" id="burger">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+  </div>
+
+    <!-- Dentro del header -->
+<div class="search-icon">
+  <img src="iconos\lupa.svg" alt="Buscar" id="searchToggle"/>
+</div>
+
+<div class="search-bar" id="searchBar">
+  <input type="text" id="searchInput" placeholder="Buscar producto...">
+</div>
+  </header>
+
+  <div class="overlay"></div>
+
+<!-- HERO -->
+<div class="carousel" id="hero">
+  <div class="slides">
+    <picture class="slide">
+      <source media="(max-width:768px)" srcset="parabanner.jpeg">
+      <img src="parabanner1.png" alt="Banner 1">
+    </picture>
+
+    <picture class="slide">
+      <source media="(max-width:768px)" srcset="banner-movil1.png">
+      <img src="Gemini_Generated_Image_b2j8gvb2j8gvb2j8.png" alt="Banner 2">
+    </picture>
+
+    <picture class="slide">
+      <source media="(max-width:768px)" srcset="banner-movil1.png">
+      <img src="Gemini_Generated_Image_b2j8gvb2j8gvb2j8.png" alt="Banner 3">
+    </picture>
+  </div>
+  
+</div>
+<div class="dots"></div>
+  <!-- FRASE -->
+  <section class="frase" id="frase">
+    <blockquote>“Streaming premium, perfiles seguros y acceso inmediato.”</blockquote>
+  </section>
+
+   
+
+  <!-- Mensajes dinámicos -->
+  <h2 id="result-title" style="display:none;">Productos encontrados</h2>
+  <h2 id="no-results" style="display:none;">No se encontraron resultados</h2>
+  
+  <!--productos-->
+ <section class="destacado">
+  <h2 id="destacado-title">Destacados</h2>
+  <div class="productos" id="productosContainer"></div>
+</section>
+
+<!--modal-->  
+<div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-left">
+        <img id="modal-img" src="">
+      </div>
+     <div class="modal-right">
+  <h2 id="modal-name"></h2>
+  <p class="modal-price" id="modal-price"></p>
+  
+  <!-- Ficha técnica -->
+  <div class="ficha-tecnica">
+    <h3>Ficha Técnica</h3>
+    <ul>
+      <li id="row-calidad"><strong>calidad:</strong> <span id="modal-calidad"></span></li>
+      <li id="row-audio" style="display:none;"><strong>Calidad de audio:</strong> <span id="modal-calidad-audio"></span></li>
+      <li id="row-pantallas"><strong>Pantallas simultaneas del plan:</strong> <span id="modal-Pantallas"></span></li>
+      <li id="row-acceso"><strong>Tipo de acceso:</strong> <span id="modal-acceso"></span></li>
+      <li id="row-privacidad"><strong>privacidad:</strong> <span id="modal-privacidad"></span></li>
+      <li id="row-regiones"><strong>Regiones disponibles:</strong> <span id="modal-regiones"></span></li>
+      <li id="row-garantia"><strong>Garantía:</strong> <span id="modal-garantia"></span></li>
+      <li id="row-entrega"><strong>Entrega:</strong> <span id="modal-entrega"></span></li>
+      <li id="row-caracteristicas" style="display:none;"><strong>Características:</strong><div id="modal-caracteristicas"></div></li>
+      <li><h3>Requisitos</h3><span id="modal-requisitos"></span></li>
+      <li id="row-conexion"><strong>🔹</strong> <span id="modal-conexion"></span></li>
+      <li id="row-dispositivos"><strong>🔹</strong> <span id="modal-dispositivos"></span></li>
+      <li id="row-ajustes"><strong>🔹</strong> <span id="modal-ajustes"></span></li>
+    </ul>
+  </div>
+
+  <p class="modal-description" id="modal-description"></p>
+  <a id="modal-whatsapp" target="_blank" class="btn-whatsapp">Comprar por WhatsApp</a>
+</div>
+    </div>
+  </div>
+    <!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="logoprincipal.svg" alt="Tu Joya Ideal Logo">
+    </div>
+
+    <div class="footer-section">
+      <h3>Suscríbete</h3>
+      <p>Recibe novedades y promociones</p>
+      <form>
+        <input type="email" placeholder="Email">
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <div class="footer-section">
+     <h3>Nosotros</h3>
+       <a href="/politicas de envío.html"><p>Políticas de envío</p></a>
+      <a href="/contacto.html">Contacto</p></a>
+    </div>
+
+    <div class="footer-section">
+      <h3>Síguenos</h3>
+      <p class="redes-sociales"><img src="iconos\facebook.png" alt="Facebook"></p>
+      <p class="redes-sociales"><img src="iconos\instagram.png" alt="Instagram"></p>
+      <p class="redes-sociales"><img src="iconos/telegrama.png" alt="Telegram"></p>
+    </div>
+  </div>
+</footer>
+ <script>
+  const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav-links');
+const overlay = document.querySelector('.overlay');
+
+let scrollPosition = 0;
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('nav-active');
+  burger.classList.toggle('toggle');
+  overlay.classList.toggle('active');
+
+  if (!document.body.classList.contains("menu-open")) {
+    scrollPosition = window.scrollY;
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.classList.add("menu-open");
+  } else {
+    document.body.classList.remove("menu-open");
+    document.body.style.top = "";
+    window.scrollTo(0, scrollPosition);
+  }
+});
+
+overlay.addEventListener('click', () => {
+  nav.classList.remove('nav-active');
+  burger.classList.remove('toggle');
+  overlay.classList.remove('active');
+  document.body.classList.remove("menu-open");
+  document.body.style.top = "";
+  window.scrollTo(0, scrollPosition);
+});
+
+
+</script>
+
+      <!-- Script -->
+  <script>
+let products = {}
+
+async function loadProducts(){
+
+const { data, error } = await db
+.from("products")
+.select("*")
+
+console.log("DATA:", data)
+console.log("ERROR:", error)
+
+if(error){
+console.error("Error cargando productos:", error)
+return
+}
+
+data.forEach(p=>{
+
+products[p.id] = {
+id:p.id,
+name:p.name,
+description:p.description,
+img:p.img,
+category:p.category,
+featured:p.featured,
+
+price:{
+cop:p.price_cop,
+usd:p.price_usd,
+eur:p.price_eur
+},
+
+discount: p.discount_cop ? {
+cop:p.discount_cop,
+usd:p.discount_usd,
+eur:p.discount_eur
+} : null,
+
+Pantallas:p.pantallas,
+acceso:p.acceso,
+privacidad:p.privacidad,
+garantia:p.garantia,
+entrega:p.entrega,
+calidad:p.calidad
+
+}
+
+})
+
+showDestacados()
+
+}
+
+loadProducts()
+/* =========================
+   RENDER DINÁMICO
+========================= */
+
+const container = document.getElementById("productosContainer");
+
+function renderProducts(filter="featured"){
+
+container.innerHTML="";
+
+Object.entries(products).forEach(([id,p])=>{
+
+if(
+(filter==="featured" && !p.featured) ||
+(filter!=="featured" && p.category!==filter)
+) return;
+
+container.innerHTML+=`
+
+<div class="producto">
+
+<img src="${p.img}" data-id="${id}" class="product">
+
+<p class="nombre-producto">${p.name}</p>
+
+${
+p.discount
+? `<p>
+<span style="text-decoration:line-through;color:gray;">
+${getPrice(p)}
+</span>
+<strong>${getPrice({price:p.discount})}</strong>
+</p>`
+: `<strong>${getPrice(p)}</strong>`
+}
+
+<button data-id="${id}" class="product">Comprar</button>
+
+</div>
+`;
+});
+
+attachProductEvents();
+}
+
+/* =========================
+   MODAL
+========================= */
+
+const modal = document.getElementById("product-modal");
+const closeModal = document.querySelector(".close");
+
+function attachProductEvents() {
+  document.querySelectorAll(".product").forEach(item => {
+    item.addEventListener("click", () => {
+      openModal(item.getAttribute("data-id"));
+    });
+  });
+}
+
+function openModal(id) {
+  const p = products[id];
+  if (!p) return;
+
+  document.getElementById("modal-img").src = p.img;
+  document.getElementById("modal-name").textContent = p.name;
+
+  if (p.discount) {
+    document.getElementById("modal-price").innerHTML =
+      `<span style="text-decoration:line-through;color:gray;">
+        ${getPrice(p)}
+       </span>
+       <strong>${getPrice({price:p.discount})}</strong>`;
+  } else {
+    document.getElementById("modal-price").innerHTML =
+      `<strong>${getPrice(p)}</strong>`;
+  }
+
+  document.getElementById("modal-description").textContent = p.description || "";
+
+  /* ======================
+     FICHA TÉCNICA DINÁMICA
+  ====================== */
+
+  const fields = [
+    ["calidad", "modal-calidad", "row-calidad"],
+    ["calidadAudio", "modal-calidad-audio", "row-audio"],
+    ["Pantallas", "modal-Pantallas", "row-pantallas"],
+    ["acceso", "modal-acceso", "row-acceso"],
+    ["privacidad", "modal-privacidad", "row-privacidad"],
+    ["regiones", "modal-regiones", "row-regiones"],
+    ["garantia", "modal-garantia", "row-garantia"],
+    ["entrega", "modal-entrega", "row-entrega"],
+    ["conexion", "modal-conexion", "row-conexion"],
+    ["dispositivos", "modal-dispositivos", "row-dispositivos"],
+    ["ajustes", "modal-ajustes", "row-ajustes"]
+  ];
+
+  fields.forEach(([prop, modalId, rowId]) => {
+    const row = document.getElementById(rowId);
+    const value = p[prop];
+
+    if (value) {
+      document.getElementById(modalId).textContent = value;
+      row.style.display = "list-item";
+    } else {
+      row.style.display = "none";
+    }
+  });
+
+  /* CARACTERÍSTICAS */
+  const caracteristicasRow = document.getElementById("row-caracteristicas");
+
+  if (p.caracteristicas) {
+    document.getElementById("modal-caracteristicas").innerHTML =
+      p.caracteristicas
+        .trim()
+        .replace(/✔️/g, "")
+        .split("\n")
+        .map(x => `✔️ ${x.trim()}`)
+        .join("<br>");
+
+    caracteristicasRow.style.display = "list-item";
+  } else {
+    caracteristicasRow.style.display = "none";
+  }
+
+  /* REQUISITOS */
+  const reqElement = document.getElementById("modal-requisitos");
+  const reqRow = reqElement.parentElement;
+
+  if (p.requisitos && p.requisitos.trim() !== "") {
+    reqElement.textContent = p.requisitos;
+    reqRow.style.display = "list-item";
+  } else {
+    reqRow.style.display = "none";
+  }
+
+  /* WHATSAPP DINÁMICO CON PRECIO */
+const numero = "3014052982"; // 👈 PON TU NUMERO REAL
+
+const precioFinal = p.discount ? p.discount : p.price;
+
+const mensaje = `Hola 👋 estoy interesado en:
+
+📦 Producto: ${p.name}
+💰 Precio: ${getPrice(p)}
+
+¿Está disponible?`;
+
+const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+document.getElementById("modal-whatsapp").href = url;
+
+  modal.style.display = "flex";
+}
+
+closeModal.onclick = () => modal.style.display = "none";
+window.onclick = e => { if (e.target == modal) modal.style.display = "none"; };
+
+
+/* =========================
+   FILTROS
+========================= */
+function filterCategory(category) {
+
+  document.getElementById("hero").style.display = "none";
+  document.getElementById("frase").style.display = "none";
+
+  const title = document.getElementById("destacado-title");
+  title.style.display = "block";
+
+  document.querySelector(".dots").style.display = "none";
+
+  if (category === "streaming") {
+    title.textContent = "Cuentas de Streaming";
+  }
+
+  if (category === "licencias") {
+    title.textContent = "Licencias Digitales";
+  }
+
+  renderProducts(category);
+}
+
+
+function showDestacados() {
+   document.getElementById("hero").style.display = "block";
+  document.getElementById("frase").style.display = "block";
+
+  const title = document.getElementById("destacado-title");
+  title.style.display = "block";
+  title.textContent = "Destacados";
+
+  document.querySelector(".dots").style.display = "block";
+
+   renderProducts("featured");
+}
+
+document.addEventListener("DOMContentLoaded", showDestacados);
+
+/* =========================
+   BUSCADOR COMPLETO
+========================= */
+
+const searchToggle = document.getElementById("searchToggle");
+const searchBar = document.getElementById("searchBar");
+const searchInput = document.getElementById("searchInput");
+const resultTitle = document.getElementById("result-title");
+const noResults = document.getElementById("no-results");
+
+/* Mostrar / ocultar barra */
+searchToggle.addEventListener("click", () => {
+  if (searchBar.style.display === "block") {
+    searchBar.style.display = "none";
+  } else {
+    searchBar.style.display = "block";
+    searchInput.focus();
+  }
+});
+
+/* Función búsqueda */
+searchInput.addEventListener("input", function () {
+  const searchText = this.value.toLowerCase().trim();
+
+  if (searchText === "") {
+    resultTitle.style.display = "none";
+    noResults.style.display = "none";
+    showDestacados();
+    return;
+  }
+
+  document.getElementById("hero").style.display = "none";
+  document.getElementById("frase").style.display = "none";
+  document.getElementById("destacado-title").style.display = "none";
+  document.querySelector(".dots").style.display = "none";
+
+  container.innerHTML = "";
+  let found = false;
+
+  Object.entries(products).forEach(([id, p]) => {
+    if (
+      p.name.toLowerCase().includes(searchText) ||
+      (p.description && p.description.toLowerCase().includes(searchText))
+    ) {
+      found = true;
+
+      container.innerHTML += `
+        <div class="producto">
+          <img src="${p.img}" data-id="${id}" class="product">
+          <p class="nombre-producto">${p.name}</p>
+          ${
+            p.discount
+              ? `<p>
+                  <span class="precio-original">
+                    ${getPrice(p)}
+                  </span>
+                  <span class="precio-descuento">
+                   ${getPrice({price:p.discount})}
+                  </span>
+                </p>`
+              : `<strong>${getPrice(p)}</strong>`
+          }
+          <button data-id="${id}" class="product">Comprar</button>
+        </div>
+      `;
+    }
+  });
+
+  attachProductEvents();
+
+  if (found) {
+    resultTitle.style.display = "block";
+    noResults.style.display = "none";
+  } else {
+    resultTitle.style.display = "none";
+    noResults.style.display = "block";
+  }
+});
+</script>
+<script>
+let lastScroll = 0;
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+  let currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 80) {
+    navbar.classList.add("hide"); // baja → se oculta
+  } else {
+    navbar.classList.remove("hide"); // sube → aparece
+  }
+
+  lastScroll = currentScroll;
+});
+</script>
+<script>
+const slides = document.querySelector(".slides");
+const slideItems = document.querySelectorAll(".slide");
+
+let index = 0;
+let interval;
+
+/* clonar el primer slide completo */
+const firstClone = slideItems[0].cloneNode(true);
+slides.appendChild(firstClone);
+
+const total = document.querySelectorAll(".slide").length;
+
+function startCarousel() {
+  interval = setInterval(() => {
+
+    index++;
+
+    slides.style.transition = "transform 0.8s ease-in-out";
+    slides.style.transform = `translateX(-${index * 100}%)`;
+
+    if (index === total - 1) {
+      setTimeout(() => {
+        slides.style.transition = "none";
+        index = 0;
+        slides.style.transform = `translateX(0%)`;
+      }, 800);
+    }
+
+    updateDots();
+
+  }, 4000);
+}
+
+function stopCarousel() {
+  clearInterval(interval);
+}
+
+slides.addEventListener("mouseenter", stopCarousel);
+slides.addEventListener("mouseleave", startCarousel);
+
+startCarousel();
+</script>
+<script>
+const dotsContainer = document.querySelector(".dots");
+const realSlides = document.querySelectorAll(".slide").length - 1;
+
+for (let i = 0; i < realSlides; i++) {
+  const dot = document.createElement("span");
+  dot.addEventListener("click", () => {
+    index = i;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    updateDots();
+  });
+  dotsContainer.appendChild(dot);
+}
+
+function updateDots() {
+  document.querySelectorAll(".dots span").forEach((dot, i) => {
+    dot.classList.toggle("active", i === index % realSlides);
+  });
+}
+
+updateDots();
+
+</script>
+<script>
+let currency="cop";
+
+async function detectCurrency(){
+
+try{
+
+const res=await fetch("https://ipapi.co/json/");
+const data=await res.json();
+
+const euroCountries=[
+"ES","FR","DE","IT","PT","NL","BE","IE","AT","FI",
+"GR","LU","SI","SK","EE","LV","LT","CY","MT"
+];
+
+if(data.country==="CO") currency="cop";
+else if(euroCountries.includes(data.country)) currency="eur";
+else currency="usd";
+
+}catch{
+currency="usd";
+}
+
+showDestacados();
+}
+
+detectCurrency();
+
+
+function getPrice(product){
+
+  if(!product || !product.price) return "";
+
+  let price = product.price[currency];
+
+  if(price === undefined){
+    price = product.price.cop; // fallback
+    currency = "cop";
+  }
+
+  if(currency==="cop"){
+    return "$"+price.toLocaleString()+" COP";
+  }
+
+  if(currency==="usd"){
+    return "$"+price+" USD";
+  }
+
+  if(currency==="eur"){
+    return "€"+price;
+  }
+
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+
+const db = supabase.createClient(
+"https://vjrttxsuvuxbpjspglmb.supabase.co",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqcnR0eHN1dnV4YnBqc3BnbG1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNDk0OTgsImV4cCI6MjA4ODkyNTQ5OH0.V3uvdQ4CbSsxU_3wFrOIGRiv9wKEmrwTZIHYCwGOEYo"
+)
+
+
+loadProducts()
+
+</script>
+
+</body>
+</html>

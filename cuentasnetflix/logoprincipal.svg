@@ -1,0 +1,44 @@
+<svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Efecto de brillo neón -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#00aaff" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Círculo principal de neón -->
+  <circle cx="160" cy="140" r="90"
+          stroke="#00c8ff"
+          stroke-width="4"
+          fill="none"
+          filter="url(#neonGlow)"/>
+
+  <!-- Ícono de play estilizado -->
+  <polygon points="140,100 200,140 140,180"
+           fill="#00c8ff"
+           filter="url(#neonGlow)"/>
+
+  <!-- Ondas de streaming -->
+  <path d="M230 90 Q260 140 230 190"
+        stroke="#00aaff"
+        stroke-width="4"
+        fill="none"
+        stroke-linecap="round"
+        filter="url(#neonGlow)"/>
+
+  <!-- Texto -->
+  <text x="50%" y="275" text-anchor="middle"
+        fill="#00c8ff"
+        font-size="32"
+        font-family="Arial, sans-serif"
+        filter="url(#neonGlow)"
+        letter-spacing="1.5">
+    StreamMarket
+  </text>
+</svg>

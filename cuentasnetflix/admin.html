@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<title>Admin Panel - StreamMarket</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+padding:40px;
+}
+
+h1,h2,h3{
+color:#00c853;
+}
+
+input,select,textarea{
+display:block;
+width:350px;
+padding:10px;
+margin:8px 0;
+background:#1b1b1b;
+border:1px solid #333;
+color:white;
+}
+
+textarea{
+height:100px;
+}
+
+button{
+padding:10px 20px;
+background:#00c853;
+border:none;
+color:white;
+cursor:pointer;
+margin-top:10px;
+}
+
+table{
+margin-top:40px;
+width:100%;
+border-collapse:collapse;
+}
+
+td,th{
+border:1px solid #333;
+padding:10px;
+text-align:left;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Panel Administrador</h1>
+
+<h2>Agregar Producto</h2>
+
+<input id="name" placeholder="Nombre">
+<input id="description" placeholder="Descripción">
+<input type="file" id="imageFile">
+<input id="whatsapp" placeholder="WhatsApp venta">
+
+<select id="category">
+<option value="streaming">Streaming</option>
+<option value="licencias">Licencias</option>
+<option value="combos">Combos</option>
+</select>
+
+<label>
+<input type="checkbox" id="featured"> Producto destacado
+</label>
+
+<h3>Precios</h3>
+
+<input id="price_cop" placeholder="Precio COP">
+<input id="price_usd" placeholder="Precio USD">
+<input id="price_eur" placeholder="Precio EUR">
+
+<h3>Descuentos</h3>
+
+<input id="discount_cop" placeholder="Descuento COP">
+<input id="discount_usd" placeholder="Descuento USD">
+<input id="discount_eur" placeholder="Descuento EUR">
+
+<h3>Ficha técnica</h3>
+
+<input id="calidad" placeholder="Calidad">
+<input id="calidad_audio" placeholder="Calidad audio">
+<input id="pantallas" placeholder="Pantallas">
+<input id="acceso" placeholder="Tipo acceso">
+<input id="privacidad" placeholder="Privacidad">
+<input id="regiones" placeholder="Regiones">
+
+<h3>Entrega</h3>
+
+<input id="garantia" placeholder="Garantía">
+<input id="entrega" placeholder="Entrega">
+
+<h3>Requisitos</h3>
+
+<input id="requisitos" placeholder="Requisitos">
+<input id="conexion" placeholder="Conexión">
+<input id="dispositivos" placeholder="Dispositivos">
+<input id="ajustes" placeholder="Ajustes">
+
+<textarea id="caracteristicas" placeholder="Características"></textarea>
+
+<button onclick="addProduct()">Guardar producto</button>
+<button onclick="updateProduct()">Actualizar producto</button>
+
+<h2>Productos guardados</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Precio</th>
+<th>Acciones</th>
+</tr>
+</thead>
+
+<tbody id="productTable"></tbody>
+
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+<script>
+
+const db = supabase.createClient(
+"https://vjrttxsuvuxbpjspglmb.supabase.co",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqcnR0eHN1dnV4YnBqc3BnbG1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNDk0OTgsImV4cCI6MjA4ODkyNTQ5OH0.V3uvdQ4CbSsxU_3wFrOIGRiv9wKEmrwTZIHYCwGOEYo"
+)
+
+let products=[]
+let currentEdit=null
+
+async function addProduct(){
+
+const imgUrl = await uploadImage()
+
+const {data: lastProduct} = await db
+.from("products")
+.select("sort_order")
+.order("sort_order", { ascending: false })
+.limit(1)
+
+const nextOrder = lastProduct.length ? lastProduct[0].sort_order + 1 : 0
+
+const product={
+
+name:document.getElementById("name").value,
+description:document.getElementById("description").value,
+img:imgUrl,
+
+sort_order: nextOrder,
+
+whatsapp:document.getElementById("whatsapp").value,
+
+category:document.getElementById("category").value,
+featured:document.getElementById("featured").checked,
+
+price_cop:Number(document.getElementById("price_cop").value),
+price_usd:Number(document.getElementById("price_usd").value),
+price_eur:Number(document.getElementById("price_eur").value),
+
+discount_cop:Number(document.getElementById("discount_cop").value),
+discount_usd:Number(document.getElementById("discount_usd").value),
+discount_eur:Number(document.getElementById("discount_eur").value),
+
+calidad:document.getElementById("calidad").value,
+calidad_audio:document.getElementById("calidad_audio").value,
+pantallas:document.getElementById("pantallas").value,
+acceso:document.getElementById("acceso").value,
+privacidad:document.getElementById("privacidad").value,
+regiones:document.getElementById("regiones").value,
+
+garantia:document.getElementById("garantia").value,
+entrega:document.getElementById("entrega").value,
+
+requisitos:document.getElementById("requisitos").value,
+conexion:document.getElementById("conexion").value,
+dispositivos:document.getElementById("dispositivos").value,
+ajustes:document.getElementById("ajustes").value,
+
+caracteristicas:document.getElementById("caracteristicas").value
+
+}
+
+const {error}=await db
+.from("products")
+.insert([product])
+
+if(error){
+alert(error.message)
+console.log(error)
+return
+}
+
+alert("Producto creado")
+
+loadProducts()
+
+}
+async function loadProducts(){
+
+const {data,error}=await db
+.from("products")
+.select("*")
+.order("sort_order",{ascending:true})
+
+if(error){
+console.log(error)
+return
+}
+
+products=data
+
+const table=document.getElementById("productTable")
+table.innerHTML=""
+
+data.forEach(p=>{
+
+table.innerHTML+=`
+
+<tr data-id="${p.id}">
+
+<td style="cursor:grab">☰</td>
+
+<td>${p.name}</td>
+
+<td>$${p.price_cop}</td>
+
+<td>
+
+<button onclick="editProduct(${p.id})">Editar</button>
+<button onclick="deleteProduct(${p.id})">Eliminar</button>
+
+</td>
+
+</tr>
+
+`
+
+})
+
+initDrag()
+
+}
+
+async function deleteProduct(id){
+
+const {error}=await db
+.from("products")
+.delete()
+.eq("id",id)
+
+if(error){
+alert(error.message)
+return
+}
+
+loadProducts()
+
+}
+
+function editProduct(id){
+
+const p = products.find(x=>x.id==id)
+
+document.getElementById("name").value=p.name
+document.getElementById("description").value=p.description
+document.getElementById("category").value=p.category
+
+document.getElementById("price_cop").value=p.price_cop
+document.getElementById("price_usd").value=p.price_usd
+document.getElementById("price_eur").value=p.price_eur
+
+document.getElementById("featured").checked=p.featured
+
+currentEdit=id
+
+}
+
+async function updateProduct(){
+
+if(!currentEdit){
+alert("Selecciona un producto primero")
+return
+}
+
+let imgUrl = null
+
+const file=document.getElementById("imageFile").files[0]
+
+if(file){
+imgUrl = await uploadImage()
+}
+
+const updateData = {
+
+name:document.getElementById("name").value,
+description:document.getElementById("description").value,
+category:document.getElementById("category").value,
+
+price_cop:Number(document.getElementById("price_cop").value),
+price_usd:Number(document.getElementById("price_usd").value),
+price_eur:Number(document.getElementById("price_eur").value),
+
+featured:document.getElementById("featured").checked
+
+}
+
+if(imgUrl){
+updateData.img = imgUrl
+}
+
+const {error}=await db
+.from("products")
+.update(updateData)
+.eq("id",currentEdit)
+
+if(error){
+alert(error.message)
+return
+}
+
+alert("Producto actualizado 🚀")
+
+loadProducts()
+
+}
+
+async function uploadImage(){
+
+const file=document.getElementById("imageFile").files[0]
+
+if(!file) return null
+
+const fileName=Date.now()+"_"+file.name
+
+const {error}=await db.storage
+.from("products")
+.upload(fileName,file)
+
+if(error){
+console.log(error)
+return null
+}
+
+const {data}=db.storage
+.from("products")
+.getPublicUrl(fileName)
+
+return data.publicUrl
+
+}
+
+loadProducts()
+
+function initDrag(){
+
+const table = document.getElementById("productTable")
+
+new Sortable(table, {
+animation:150,
+
+onEnd: async function (){
+
+const rows = table.querySelectorAll("tr")
+
+const updates = []
+
+for(let i=0;i<rows.length;i++){
+
+const id = rows[i].getAttribute("data-id")
+
+updates.push(
+db
+.from("products")
+.update({sort_order:i})
+.eq("id",id)
+)
+
+}
+
+await Promise.all(updates)
+
+console.log("Orden actualizado 🚀")
+
+}
+
+})
+
+}
+
+</script>
+
+</body>
+</html>

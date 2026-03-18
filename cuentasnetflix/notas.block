@@ -1,0 +1,257 @@
+.carousel {
+  width: |100%;
+  overflow: hidden;
+  background: #000;
+  height: ;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+.slides img {
+  width: 100%;
+  height: auto;      /* 🔥 mantiene proporción real */
+  flex: 0 0 100%;
+  display: block;
+}
+
+.carousel {
+  width: 100%;
+  height: 90vh;
+  max-height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.slides img {
+  min-width: 100%;   /* 🔥 clave para que solo se vea una */
+  height: 100%;
+  object-fit: contain;
+}
+
+
+[
+{
+"id":1,
+"name":"Netflix Premium 4K – Pantalla Individual / Original sin caidas",
+"price":{"cop":13000,"usd":5,"eur":4.5},
+"description":"Acceso a Netflix Premium con calidad 4K Ultra HD + HDR, perfil exclusivo protegido con PIN. Ideal para uso personal o familiar. No incluye cambios de correo ni contraseña, solo acceso al perfil asignado.",
+"img":"netflix2.png",
+"whatsapp":"https://wa.me/57XXXXXXXXXX",
+"calidad":"4K Ultra HD / HDR10 / Dolby Vision",
+"Pantallas":"1",
+"acceso":"Perfil individual",
+"privacidad":"Perfil bloqueado con PIN",
+"regiones":"Mundial",
+"garantia":"27 dias",
+"entrega":"Inmediata (1–5 minutos)",
+"requisitos":"",
+"conexion":"Conexión a internet",
+"dispositivos":"Smart TV, PC, Android, iOS o Tablet",
+"ajustes":"No se permite cambiar idioma del perfil o ajustes avanzados",
+"category":"streaming",
+"featured":false
+},
+{
+"id":2,
+"name":"Netflix Premium 4K – perfil individual/ Original sin caidas",
+"price":{"cop":15000,"usd":6,"eur":5},
+"description":"Acceso a Netflix Premium con calidad 4K Ultra HD + HDR, perfil exclusivo protegido con PIN.",
+"img":"netflix2.png",
+"calidad":"4K Ultra HD / HDR10 / Dolby Vision",
+"Pantallas":"4",
+"acceso":"Perfil individual",
+"privacidad":"Perfil bloqueado con PIN",
+"regiones":"Mundial",
+"garantia":"30 dias",
+"entrega":"Inmediata (1–5 minutos)",
+"conexion":"Conexión a internet",
+"dispositivos":"Smart TV, PC, Android, iOS o Tablet",
+"category":"streaming",
+"featured":false
+},
+{
+"id":3,
+"name":"Netflix Premium 4K – cuenta completa/ Original sin caidas",
+"price":{"cop":50000,"usd":16,"eur":14},
+"description":"Acceso completo a Netflix Premium 4K.",
+"img":"netflix2.png",
+"calidad":"4K Ultra HD / HDR10 / Dolby Vision",
+"Pantallas":"4",
+"acceso":"Cuenta completa",
+"privacidad":"acceso al correo",
+"regiones":"Mundial",
+"garantia":"30 dias",
+"entrega":"Inmediata (1–5 minutos)",
+"conexion":"Conexión a internet",
+"dispositivos":"Smart TV, PC, Android, iOS o Tablet",
+"category":"streaming",
+"featured":false
+},
+{
+"id":4,
+"name":"Disney+ Premium +ESPN – Perfil Individual",
+"price":{"cop":12000,"usd":5,"eur":4},
+"description":"Disney+ Premium con ESPN y STAR+.",
+"img":"disney-premiun.webp",
+"calidad":"4K Ultra HD / HDR10 / Dolby Vision",
+"Pantallas":"1",
+"acceso":"Perfil individual",
+"privacidad":"Perfil bloqueado con PIN",
+"regiones":"Mundial",
+"garantia":"30 dias",
+"entrega":"Inmediata",
+"conexion":"Conexión a internet",
+"dispositivos":"Smart TV, PC, Android, iOS",
+"category":"streaming",
+"featured":true
+},
+{
+"id":5,
+"name":"Disney+ Premium +ESPN – cuenta completa",
+"price":{"cop":32000,"usd":12,"eur":10},
+"description":"Disney+ completo con ESPN.",
+"img":"disney-premiun.webp",
+"calidad":"4K Ultra HD",
+"Pantallas":"4",
+"acceso":"Completo",
+"privacidad":"acceso al correo",
+"regiones":"Mundial",
+"garantia":"30 dias",
+"entrega":"Inmediata",
+"category":"streaming",
+"featured":true
+},
+{
+"id":6,
+"name":"Disney+ Premium sin ESPN – cuenta completa",
+"price":{"cop":22000,"usd":11,"eur":9},
+"description":"Disney+ Premium sin ESPN.",
+"img":"disney-premiun.webp",
+"calidad":"4K Ultra HD",
+"Pantallas":"4",
+"acceso":"Completo",
+"privacidad":"acceso al correo",
+"garantia":"30 dias",
+"category":"streaming",
+"featured":true
+},
+{
+"id":7,
+"name":"Disney+ Estandar – Perfil Individual",
+"price":{"cop":9000,"usd":4,"eur":3},
+"description":"Disney+ estándar perfil privado.",
+"img":"disney+.png",
+"calidad":"Ultra HD / Audio 5.1",
+"Pantallas":"1",
+"acceso":"Perfil individual",
+"privacidad":"Perfil bloqueado con PIN",
+"category":"streaming",
+"featured":true
+},
+{
+"id":8,
+"name":"Disney+ estandar – cuenta completa",
+"price":{"cop":16000,"usd":8,"eur":7},
+"description":"Disney+ estándar cuenta completa.",
+"img":"disney+.png",
+"Pantallas":"4",
+"acceso":"Completo",
+"privacidad":"acceso al correo",
+"category":"streaming",
+"featured":true
+},
+{
+"id":9,
+"name":"Max (HBO Max) – Perfil Individual",
+"price":{"cop":9000,"usd":3.5,"eur":3.5},
+"description":"Perfil privado con catálogo HBO.",
+"img":"hbomax2.png",
+"calidad":"HD / 4K",
+"Pantallas":"1",
+"acceso":"Perfil individual",
+"privacidad":"PIN",
+"category":"streaming",
+"featured":true
+},
+{
+"id":10,
+"name":"Max (HBO Max) – cuenta completa",
+"price":{"cop":16000,"usd":8,"eur":8},
+"description":"Cuenta completa HBO Max.",
+"img":"hbomax2.png",
+"Pantallas":"4",
+"acceso":"Completo",
+"category":"streaming",
+"featured":true
+},
+{
+"id":11,
+"name":"Prime Video – Pantalla Individual",
+"price":{"cop":12000,"usd":8,"eur":8},
+"discount":{"cop":9000,"usd":3,"eur":3},
+"description":"Amazon Prime Video perfil.",
+"img":"amazon2.png",
+"Pantallas":"1",
+"acceso":"Perfil individual",
+"category":"streaming",
+"featured":true
+},
+{
+"id":12,
+"name":"Prime Video – cuenta completa",
+"price":{"cop":2499,"usd":8.99,"eur":8.99},
+"discount":{"cop":16000,"usd":6,"eur":6},
+"description":"Amazon Prime Video cuenta completa.",
+"img":"amazon2.png",
+"Pantallas":"3",
+"acceso":"Completo",
+"category":"streaming",
+"featured":true
+},
+{
+"id":13,
+"name":"Spotify Premium Familiar – Usuario Individual",
+"price":{"cop":12000,"usd":3,"eur":2.8},
+"discount":{"cop":7000,"usd":2,"eur":1.8},
+"description":"Spotify Premium invitación familiar.",
+"img":"spotify2.png",
+"calidadAudio":"Alta / 320 kbps",
+"conexion":"Correo Gmail para invitación",
+"category":"streaming",
+"featured":true
+},
+{
+"id":14,
+"name":"YouTube Premium – Cuenta Invitada",
+"price":{"cop":12000,"usd":3,"eur":2.8},
+"discount":{"cop":7000,"usd":2,"eur":1.8},
+"description":"YouTube sin anuncios y con música.",
+"img":"youtube2.png",
+"caracteristicas":"Sin anuncios, Música Premium, Segundo plano",
+"conexion":"Correo Gmail para invitación",
+"category":"streaming",
+"featured":true
+},
+{
+"id":15,
+"name":"Combo Netflix 4K + Disney+ HD",
+"price":{"cop":12000,"usd":3,"eur":2.8},
+"discount":{"cop":7000,"usd":2,"eur":1.8},
+"description":"Combo económico Netflix + Disney+.",
+"img":"netfly+disney.png",
+"calidad":"4K Ultra HD",
+"Pantallas":"4",
+"acceso":"Perfil individual",
+"category":"streaming",
+"featured":true
+}
+]
