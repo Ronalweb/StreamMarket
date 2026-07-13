@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <!-- Filtro de brillo neón -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#00c8ff" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Círculo de la lupa -->
+  <circle cx="27" cy="27" r="16" stroke="#00c8ff" stroke-width="4" fill="none" filter="url(#neonGlow)"/>
+
+  <!-- Mango de la lupa -->
+  <line x1="39" y1="39" x2="50" y2="50" stroke="#00c8ff" stroke-width="4" stroke-linecap="round" filter="url(#neonGlow)"/>
+</svg>
